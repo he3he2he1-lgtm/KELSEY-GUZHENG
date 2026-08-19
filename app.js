@@ -10,7 +10,33 @@ const progress = document.querySelector("#progress");
 const volume = document.querySelector("#volume");
 const currentTime = document.querySelector("#current-time");
 const totalTime = document.querySelector("#total-time");
+const introScreen = document.querySelector("#intro-screen");
+const enterButton = document.querySelector("#enter-site");
+const siteShell = document.querySelector(".site-shell");
 let activeTrack = 0;
+
+if (introScreen && enterButton && siteShell) {
+  siteShell.inert = true;
+  requestAnimationFrame(() => enterButton.focus({ preventScroll: true }));
+
+  enterButton.addEventListener("click", () => {
+    introScreen.classList.add("is-leaving");
+    siteShell.inert = false;
+    document.body.classList.remove("intro-open");
+
+    window.setTimeout(() => {
+      introScreen.hidden = true;
+      cards[activeTrack].querySelector("button").focus({ preventScroll: true });
+    }, 500);
+  });
+
+  introScreen.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      enterButton.focus({ preventScroll: true });
+    }
+  });
+}
 
 function formatTime(value) {
   if (!Number.isFinite(value)) return "00:00";
