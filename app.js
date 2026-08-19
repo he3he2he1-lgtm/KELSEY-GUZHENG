@@ -7,7 +7,6 @@ const tracks = [
 const audio = document.querySelector("#audio");
 const cards = [...document.querySelectorAll(".track-card")];
 const progress = document.querySelector("#progress");
-const volume = document.querySelector("#volume");
 const currentTime = document.querySelector("#current-time");
 const totalTime = document.querySelector("#total-time");
 const introScreen = document.querySelector("#intro-screen");
@@ -111,13 +110,6 @@ audio.addEventListener("timeupdate", () => {
 progress.addEventListener("input", () => {
   audio.currentTime = Number(progress.value);
   updateRange(progress, audio.duration ? (audio.currentTime / audio.duration) * 100 : 0);
-});
-
-audio.volume = Number(volume.value);
-updateRange(volume, audio.volume * 100);
-volume.addEventListener("input", () => {
-  audio.volume = Number(volume.value);
-  updateRange(volume, audio.volume * 100);
 });
 
 updateCards();
