@@ -16,9 +16,7 @@
     <section class="intro-screen" id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title" aria-describedby="intro-description">
       <div class="intro-card">
         <header class="intro-header">
-          <span class="intro-kicker">KELSEY&rsquo;S LITTLE MUSIC CORNER</span>
-          <h2 id="intro-title">Oh, you&rsquo;re here!</h2>
-          <p>Welcome to Kelsey&rsquo;s Little Music Corner! 🎶✨</p>
+          <h2 id="intro-title">Welcome to Kelsey&rsquo;s Little Music Corner! 🎶✨</h2>
         </header>
 
         <div class="intro-content">
@@ -27,7 +25,6 @@
             <p id="intro-description">
               Dating back over 2,500 years, the guzheng has been part of Chinese musical tradition for centuries. It was once played alongside instruments such as the pipa and xiao in imperial court music. Today, it continues to evolve and find new life in modern music.
             </p>
-            <p class="intro-invitation">Click the vinyl to listen 🎶</p>
           </section>
 
           <section class="intro-songs" aria-labelledby="intro-songs-title">
@@ -40,7 +37,10 @@
           </section>
         </div>
 
-        <button class="enter-button" id="enter-site" type="button">Enter</button>
+        <footer class="intro-actions">
+          <p class="intro-invitation">Click the vinyl to listen 🎶</p>
+          <button class="enter-button" id="enter-site" type="button">Enter</button>
+        </footer>
       </div>
     </section>
 
@@ -96,7 +96,7 @@
         </article>
       </section>
 
-      <section class="lower-panel" aria-label="Player controls and mobile link">
+      <section class="lower-panel" aria-label="Player controls">
         <section class="player-dock" aria-label="Audio player">
           <audio id="audio" src="audio/track-01.mp3" preload="metadata"></audio>
           <div class="control-row timeline">
@@ -112,13 +112,9 @@
           </span>
         </label>
 
-        <section class="share-card" aria-label="QR code for this music player">
-          <div class="qr-frame" id="qr-code" aria-hidden="true"></div>
-        </section>
       </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
     <script src="app.js" defer></script>
   </body>
 </html>
