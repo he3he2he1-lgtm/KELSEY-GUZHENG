@@ -120,19 +120,4 @@ volume.addEventListener("input", () => {
   updateRange(volume, audio.volume * 100);
 });
 
-window.addEventListener("load", () => {
-  const qr = document.querySelector("#qr-code");
-  const pageUrl = window.location.href.split(/[?#]/)[0];
-  if (window.QRCode) {
-    new window.QRCode(qr, {
-      text: pageUrl,
-      width: 76,
-      height: 76,
-      colorDark: "#09070c",
-      colorLight: "#f5f2e9",
-      correctLevel: window.QRCode.CorrectLevel.M,
-    });
-  }
-});
-
 updateCards();
