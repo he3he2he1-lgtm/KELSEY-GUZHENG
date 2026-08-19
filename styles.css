@@ -14,8 +14,82 @@
 * { box-sizing: border-box; }
 html { min-width: 320px; background: var(--void); }
 body { margin: 0; background: var(--void); color: var(--ink); font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; }
+body.intro-open { overflow: hidden; }
 button, input { font: inherit; }
 button:focus-visible, input:focus-visible { outline: 2px solid var(--acid); outline-offset: 4px; }
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 36px);
+  overflow: hidden;
+  background: rgba(75, 64, 48, .2);
+  backdrop-filter: blur(11px) saturate(105%);
+  transition: opacity .5s ease, visibility .5s ease;
+}
+.intro-screen::before,
+.intro-screen::after {
+  content: "";
+  position: absolute;
+  width: min(42vw, 520px);
+  aspect-ratio: 1;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .26;
+  pointer-events: none;
+}
+.intro-screen::before { top: -24%; left: -10%; background: #fff4d8; }
+.intro-screen::after { right: -12%; bottom: -30%; background: #9aae9b; }
+.intro-screen.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.intro-card {
+  width: min(920px, 100%);
+  max-height: calc(100svh - clamp(32px, 6vw, 72px));
+  padding: clamp(28px, 4vw, 48px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: clamp(24px, 3vw, 34px);
+  background:
+    linear-gradient(140deg, rgba(255, 253, 246, .72), rgba(231, 219, 195, .48)),
+    rgba(244, 237, 220, .5);
+  box-shadow: 0 34px 90px rgba(71, 58, 39, .25), inset 0 1px 0 rgba(255, 255, 255, .8);
+  backdrop-filter: blur(30px) saturate(130%);
+}
+.intro-header { max-width: 720px; }
+.intro-kicker { display: block; margin-bottom: 13px; color: #7b6c58; font: 600 10px/1 var(--font-geist-mono), monospace; letter-spacing: .2em; }
+.intro-header h2 { margin: 0; color: #393126; font: 500 clamp(34px, 5vw, 58px)/.98 "Iowan Old Style", "Palatino Linotype", Georgia, serif; letter-spacing: -.035em; }
+.intro-header > p { margin: 13px 0 0; color: #6a5c4c; font-size: clamp(15px, 1.6vw, 18px); }
+.intro-content { display: grid; grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr); gap: clamp(30px, 5vw, 60px); margin-top: clamp(28px, 4vh, 42px); }
+.intro-content h3 { margin: 0 0 13px; color: #473d31; font: 600 13px/1 var(--font-geist-mono), monospace; letter-spacing: .13em; text-transform: uppercase; }
+.intro-about p { margin: 0; color: #5f5547; font-size: 15px; line-height: 1.66; }
+.intro-about .intro-invitation { margin-top: 18px; color: #6e5338; font-style: italic; }
+.intro-songs ol { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.intro-songs li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; padding-top: 14px; border-top: 1px solid rgba(94, 79, 58, .18); }
+.intro-songs li:first-child { padding-top: 0; border-top: 0; }
+.intro-songs li > span { color: #8e6b47; font: 600 11px/1.5 var(--font-geist-mono), monospace; letter-spacing: .08em; }
+.intro-songs li p { margin: 0; color: #554b3e; font-size: 14px; line-height: 1.48; }
+.intro-songs cite { font-style: italic; }
+.enter-button {
+  min-width: 146px;
+  margin-top: clamp(30px, 4vh, 42px);
+  padding: 13px 30px 12px;
+  border: 1px solid rgba(68, 58, 45, .55);
+  border-radius: 999px;
+  color: #f7f0df;
+  background: #443a2e;
+  box-shadow: 0 12px 28px rgba(66, 52, 35, .18);
+  cursor: pointer;
+  font: 600 11px/1 var(--font-geist-mono), monospace;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.enter-button:hover { transform: translateY(-2px); background: #66523b; box-shadow: 0 16px 32px rgba(66, 52, 35, .22); }
+.enter-button:focus-visible { outline-color: #443a2e; }
 
 .site-shell {
   height: 100svh;
@@ -158,6 +232,18 @@ input[type="range"].vertical-volume { width: 50px; transform: rotate(-90deg); }
 }
 
 @media (max-width: 640px) and (orientation: portrait) {
+  .intro-screen { padding: 12px; }
+  .intro-card { max-height: calc(100svh - 24px); padding: 25px 22px 24px; border-radius: 24px; }
+  .intro-kicker { margin-bottom: 10px; font-size: 8px; }
+  .intro-header h2 { font-size: clamp(34px, 11vw, 46px); }
+  .intro-header > p { margin-top: 9px; font-size: 14px; }
+  .intro-content { grid-template-columns: 1fr; gap: 26px; margin-top: 27px; }
+  .intro-about p { font-size: 14px; line-height: 1.56; }
+  .intro-about .intro-invitation { margin-top: 13px; }
+  .intro-songs ol { gap: 11px; }
+  .intro-songs li { grid-template-columns: 30px minmax(0, 1fr); gap: 9px; padding-top: 11px; }
+  .intro-songs li p { font-size: 13px; line-height: 1.42; }
+  .enter-button { width: 100%; margin-top: 27px; }
   .site-shell { padding: 17px 12px 12px; }
   .brand-instrument { font-size: 13px; }
   .masthead h1 { font-size: 12px; }
@@ -184,6 +270,10 @@ input[type="range"].vertical-volume { width: 50px; transform: rotate(-90deg); }
 }
 
 @media (max-width: 380px) and (orientation: portrait), (max-height: 620px) and (orientation: portrait) {
+  .intro-card { padding: 21px 19px; }
+  .intro-header h2 { font-size: 33px; }
+  .intro-content { gap: 21px; margin-top: 21px; }
+  .enter-button { margin-top: 22px; }
   .site-shell { padding-top: 13px; }
   .record-grid { row-gap: 6px; margin-block: 5px; }
   .record-stage { width: min(100%, 38vw, 142px, calc(50svh - 108px)); }
