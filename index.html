@@ -12,7 +12,38 @@
     <title>KELSEY — 3 TRACKS</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="intro-open">
+    <section class="intro-screen" id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title" aria-describedby="intro-description">
+      <div class="intro-card">
+        <header class="intro-header">
+          <span class="intro-kicker">KELSEY&rsquo;S LITTLE MUSIC CORNER</span>
+          <h2 id="intro-title">Oh, you&rsquo;re here!</h2>
+          <p>Welcome to Kelsey&rsquo;s Little Music Corner! 🎶✨</p>
+        </header>
+
+        <div class="intro-content">
+          <section class="intro-about">
+            <h3>Meet the Guzheng</h3>
+            <p id="intro-description">
+              Dating back over 2,500 years, the guzheng has been part of Chinese musical tradition for centuries. It was once played alongside instruments such as the pipa and xiao in imperial court music. Today, it continues to evolve and find new life in modern music.
+            </p>
+            <p class="intro-invitation">Click the vinyl to listen 🎶</p>
+          </section>
+
+          <section class="intro-songs" aria-labelledby="intro-songs-title">
+            <h3 id="intro-songs-title">Three Songs</h3>
+            <ol>
+              <li><span>01</span><p>Adapted from <cite>Mia &amp; Sebastian&rsquo;s Theme</cite> from <cite>La La Land</cite>.</p></li>
+              <li><span>02</span><p><cite>Dance of the Yi People</cite>, presumably based on traditional music of the Yi people of southern China.</p></li>
+              <li><span>03</span><p>A musical fusion of YCK&rsquo;s <cite>Bad News</cite> with three Chinese folk melodies: <cite>Dance of the Yi People</cite>, <cite>Mo Li Hua (Jasmine Flower)</cite>, and <cite>Dance of the Yao People</cite>.</p></li>
+            </ol>
+          </section>
+        </div>
+
+        <button class="enter-button" id="enter-site" type="button">Enter</button>
+      </div>
+    </section>
+
     <main class="site-shell">
       <div class="ambient ambient-one" aria-hidden="true"></div>
       <div class="ambient ambient-two" aria-hidden="true"></div>
